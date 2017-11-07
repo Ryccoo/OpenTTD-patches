@@ -48,3 +48,6 @@ src/os/windows/ottdres.rc
 !/config.lib
 !*.in
 *.tmp
+.idea
+CMakeLists.txt
+cmake-build-debug/
