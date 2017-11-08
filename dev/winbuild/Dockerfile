@@ -175,5 +175,25 @@ WORKDIR /openttd/build
 #    LDFLAGS="-L/usr/local/i686-w64-mingw32/lib"
 #RUN make -j5
 
+RUN mkdir -p ///usr/local/share/games/openttd/data
 
+# Build OpenTTD itself
+WORKDIR /openttd
+RUN wget https://github.com/Ryccoo/OpenTTD-patches/archive/freeplay-0.22.0.tar.gz -O freeplay.tar.gz
+RUN tar xfz freeplay.tar.gz
+WORKDIR /openttd/OpenTTD-patches-freeplay-0.22.0/
+RUN env PKG_CONFIG_LIBDIR=/usr/local/i686-w64-mingw32/lib/pkgconfig \
+    ./configure \
+    --host=i686-w64-mingw32 \
+    --prefix=/usr/local/i686-w64-mingw32 \
+    --enable-static --static-icu \
+    --with-lzo2=/usr/local/i686-w64-mingw32/lib/liblzo2.a \
+    CFLAGS="-I/usr/local/i686-w64-mingw32/include" \
+    LDFLAGS="-L/usr/local/i686-w64-mingw32/lib"
+RUN make -j5
 
+# Grab OpenGFX as tagged
+ADD https://binaries.openttd.org/extra/opengfx/$OPENGFX_VERSION/opengfx-$OPENGFX_VERSION-all.zip opengfx.zip
+RUN unzip opengfx.zip \
+    && tar -xf opengfx-$OPENGFX_VERSION.tar -C /usr/local/share/games/openttd/baseset/ \
+    && rm -rf opengfx-$OPENGFX_VERSION.tar opengfx.zip

@@ -40,7 +40,13 @@ DateTicksScaled _scaled_date_ticks; ///< Date as ticks in daylength-scaled ticks
  */
 void SetDate(Date date, DateFract fract)
 {
-    assert(fract < ORIG_DAY_TICKS);
+    if(fract < ORIG_DAY_TICKS)
+    {
+        assert(fract < ORIG_DAY_TICKS);
+    } else
+    {
+        assert(fract < DAY_TICKS);
+    }
 
 	YearMonthDay ymd;
 
