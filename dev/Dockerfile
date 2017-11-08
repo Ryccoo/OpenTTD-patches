@@ -1,7 +1,5 @@
 FROM debian:latest
 
-
-ARG OPENTTD_VERSION="1.7.0"
 ARG OPENGFX_VERSION="0.5.2"
 
 # Get things ready
@@ -27,21 +25,22 @@ RUN apt-get update && \
 RUN mkdir -p /openttd
 
 # Build OpenTTD itself
-RUN svn checkout svn://svn.openttd.org/tags/${OPENTTD_VERSION} /openttd/build
-WORKDIR /openttd/build
+WORKDIR /openttd
+RUN wget https://github.com/Ryccoo/OpenTTD-patches/archive/freeplay-0.22.0.tar.gz -O freeplay.tar.gz
+RUN tar xfz freeplay.tar.gz
+WORKDIR /openttd/OpenTTD-patches-freeplay-0.22.0/
 
-RUN wget https://www.tt-forums.net/download/file.php?id=197853
-RUN patch -p 0 -i file.php?id=197853
-
-RUN /openttd/build/configure \
+RUN mkdir -p ///usr/local/share/games/openttd/data
+RUN /openttd/OpenTTD-patches-freeplay-0.22.0/configure \
     --enable-dedicated \
     --binary-dir=bin \
-    --personal-dir=/ 
+    --personal-dir=/ \
+    —-enable-debug
 RUN make -j5
 RUN make install
 
 # Grab OpenGFX as tagged
-RUN wget https://binaries.openttd.org/extra/opengfx/$OPENGFX_VERSION/opengfx-$OPENGFX_VERSION-all.zip -O opengfx.zip
+ADD https://binaries.openttd.org/extra/opengfx/$OPENGFX_VERSION/opengfx-$OPENGFX_VERSION-all.zip opengfx.zip
 RUN unzip opengfx.zip \
     && tar -xf opengfx-$OPENGFX_VERSION.tar -C /usr/local/share/games/openttd/baseset/ \
     && rm -rf opengfx-$OPENGFX_VERSION.tar opengfx.zip
@@ -60,22 +59,16 @@ EXPOSE 3979/udp
 # Expose the admin port
 EXPOSE 3977/tcp
 
+# Tidy up after ourselves
+# note: we don't remove libraries and compilers otherwise bad linking things happen
+#RUN apt-get remove -y \
+#    make \
+#    patch \
+#    subversion
+
 RUN rm -r /tmp/build
 
-RUN mkdir -p /config
-
 # Finally, let's be OpenTTD!
-#USER openttd
-#WORKDIR /config
-#CMD /usr/local/bin/entrypoint 
-
-RUN apt-get install -y clang
-RUN apt-get install -y build-essential pkg-config libsdl1.2-dev subversion patch zlib1g-dev liblzo2-dev liblzma-dev libfontconfig-dev libicu-dev
-RUN apt-get install -y git autoconf automake autopoint bash bison bzip2 flex gettext git g++ gperf intltool libffi-dev libgdk-pixbuf2.0-dev libtool libltdl-dev libssl-dev libxml-parser-perl make openssl p7zip-full patch perl pkg-config python ruby scons sed unzip wget xz-utils g++-multilib libc6-dev-i386 libtool-bin
-
-WORKDIR /usr/local
-RUN git clone http://github.com/mxe/mxe.git
-WORKDIR /usr/local/mxe
-RUN make -j`nproc` MXE_TARGETS='i686-w64-mingw32.static x86_64-w64-mingw32.static' gcc zlib libpng lzo freetype xz icu4c
-
-
+USER openttd
+WORKDIR /config
+CMD /usr/local/bin/entrypoint
