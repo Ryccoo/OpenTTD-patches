@@ -179,9 +179,9 @@ RUN mkdir -p ///usr/local/share/games/openttd/data
 
 # Build OpenTTD itself
 WORKDIR /openttd
-RUN wget https://github.com/Ryccoo/OpenTTD-patches/archive/freeplay-0.22.0.tar.gz -O freeplay.tar.gz
+RUN wget https://github.com/Ryccoo/OpenTTD-patches/archive/freeplay-0.22.1.tar.gz -O freeplay.tar.gz
 RUN tar xfz freeplay.tar.gz
-WORKDIR /openttd/OpenTTD-patches-freeplay-0.22.0/
+WORKDIR /openttd/OpenTTD-patches-freeplay-0.22.1/
 RUN env PKG_CONFIG_LIBDIR=/usr/local/i686-w64-mingw32/lib/pkgconfig \
     ./configure \
     --host=i686-w64-mingw32 \
