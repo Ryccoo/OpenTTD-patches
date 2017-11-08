@@ -30,8 +30,15 @@ typedef uint8  Day;   ///< Type for the day of the month, note: 1 based, first d
  * 1 day is thus about 2 seconds (74 * 30 = 2220) on a machine that can run OpenTTD normally
  */
 static const int DAY_TICKS         =  74; ///< ticks per day
+static const int ORIG_DAY_TICKS    =  74; ///< unscaled ticks per day
 static const int DAYS_IN_YEAR      = 365; ///< days per year
 static const int DAYS_IN_LEAP_YEAR = 366; ///< sometimes, you need one day more...
+
+/**
+ * Day length in ticks, calculated using a configureable scale factor.
+ */
+#define DAY_TICKS (ORIG_DAY_TICKS * _settings_game.economy.day_length_factor_isolated)
+
 
 #define DATE_UNIT_SIZE (_settings_client.gui.time_in_minutes ? _settings_client.gui.ticks_per_minute : (DAY_TICKS * _settings_game.economy.day_length_factor))
 
@@ -127,5 +134,7 @@ struct YearMonthDay {
 static const Year  INVALID_YEAR  = -1; ///< Representation of an invalid year
 static const Date  INVALID_DATE  = -1; ///< Representation of an invalid date
 static const Ticks INVALID_TICKS = -1; ///< Representation of an invalid number of ticks
+
+int GetAdjustedDayTicks();
 
 #endif /* DATE_TYPE_H */

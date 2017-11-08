@@ -52,6 +52,11 @@ void SetDate(Date date, DateFract fract)
 	SetScaledTickVariables();
 }
 
+int GetAdjustedDayTicks()
+{
+	return DAY_TICKS;
+}
+
 void SetScaledTickVariables()
 {
 	_scaled_date_ticks = ((((DateTicksScaled)_date * DAY_TICKS) + _date_fract) * _settings_game.economy.day_length_factor) + _tick_skip_counter;

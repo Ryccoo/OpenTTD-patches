@@ -1425,6 +1425,13 @@ static bool DayLengthChanged(int32 p1)
 	return true;
 }
 
+static bool DayLengthIsolatedChanged(int32 p1)
+{
+	SetScaledTickVariables();
+	MarkWholeScreenDirty();
+	return true;
+}
+
 #ifdef ENABLE_NETWORK
 
 static bool UpdateClientName(int32 p1)

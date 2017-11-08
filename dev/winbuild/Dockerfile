@@ -165,15 +165,15 @@ RUN make
 RUN make install
 
 WORKDIR /openttd/build
-RUN env PKG_CONFIG_LIBDIR=/usr/local/i686-w64-mingw32/lib/pkgconfig \
-    ./configure \
-    --host=i686-w64-mingw32 \
-    --prefix=/usr/local/i686-w64-mingw32 \
-    --enable-static --static-icu \
-    --with-lzo2=/usr/local/i686-w64-mingw32/lib/liblzo2.a \
-    CFLAGS="-I/usr/local/i686-w64-mingw32/include" \
-    LDFLAGS="-L/usr/local/i686-w64-mingw32/lib"
-RUN make -j5
+#RUN env PKG_CONFIG_LIBDIR=/usr/local/i686-w64-mingw32/lib/pkgconfig \
+#    ./configure \
+#    --host=i686-w64-mingw32 \
+#    --prefix=/usr/local/i686-w64-mingw32 \
+#    --enable-static --static-icu \
+#    --with-lzo2=/usr/local/i686-w64-mingw32/lib/liblzo2.a \
+#    CFLAGS="-I/usr/local/i686-w64-mingw32/include" \
+#    LDFLAGS="-L/usr/local/i686-w64-mingw32/lib"
+#RUN make -j5
 
 
 

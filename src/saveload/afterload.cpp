@@ -775,6 +775,7 @@ bool AfterLoadGame()
 
 	if (SlXvIsFeaturePresent(XSLFI_SPRINGPP)) {
 		assert(_settings_game.economy.day_length_factor >= 1);
+		assert(_settings_game.economy.day_length_factor_isolated >= 1);
 		_tick_skip_counter = _date_fract % _settings_game.economy.day_length_factor;
 		_date_fract /= _settings_game.economy.day_length_factor;
 		assert(_date_fract < DAY_TICKS);
@@ -784,6 +785,11 @@ bool AfterLoadGame()
 	/* Set day length factor to 1 if loading a pre day length savegame */
 	if (SlXvIsFeatureMissing(XSLFI_VARIABLE_DAY_LENGTH) && SlXvIsFeatureMissing(XSLFI_SPRINGPP)) {
 		_settings_game.economy.day_length_factor = 1;
+	}
+
+	/* Set day length factor isolated to 1 if loading a pre day length savegame */
+	if (SlXvIsFeatureMissing(XSLFI_VARIABLE_DAY_LENGTH) && SlXvIsFeatureMissing(XSLFI_SPRINGPP)) {
+		_settings_game.economy.day_length_factor_isolated = 1;
 	}
 
 	/* Update current year
@@ -3405,6 +3411,11 @@ bool AfterLoadGame()
 	/* Set day length factor to 1 if loading a pre day length savegame */
 	if (SlXvIsFeatureMissing(XSLFI_VARIABLE_DAY_LENGTH) && SlXvIsFeatureMissing(XSLFI_SPRINGPP)) {
 		_settings_game.economy.day_length_factor = 1;
+	}
+
+	/* Set day length factor to 1 if loading a pre day length savegame */
+	if (SlXvIsFeatureMissing(XSLFI_VARIABLE_DAY_LENGTH) && SlXvIsFeatureMissing(XSLFI_SPRINGPP)) {
+		_settings_game.economy.day_length_factor_isolated = 1;
 	}
 
 	if (SlXvIsFeatureMissing(XSLFI_SAFER_CROSSINGS)) {

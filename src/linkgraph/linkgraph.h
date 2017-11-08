@@ -19,6 +19,7 @@
 #include "../station_base.h"
 #include "../cargotype.h"
 #include "../date_func.h"
+#include "../settings_type.h"
 #include "linkgraph_type.h"
 
 struct SaveLoad;

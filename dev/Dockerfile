@@ -73,3 +73,9 @@ RUN apt-get install -y clang
 RUN apt-get install -y build-essential pkg-config libsdl1.2-dev subversion patch zlib1g-dev liblzo2-dev liblzma-dev libfontconfig-dev libicu-dev
 RUN apt-get install -y git autoconf automake autopoint bash bison bzip2 flex gettext git g++ gperf intltool libffi-dev libgdk-pixbuf2.0-dev libtool libltdl-dev libssl-dev libxml-parser-perl make openssl p7zip-full patch perl pkg-config python ruby scons sed unzip wget xz-utils g++-multilib libc6-dev-i386 libtool-bin
 
+WORKDIR /usr/local
+RUN git clone http://github.com/mxe/mxe.git
+WORKDIR /usr/local/mxe
+RUN make -j`nproc` MXE_TARGETS='i686-w64-mingw32.static x86_64-w64-mingw32.static' gcc zlib libpng lzo freetype xz icu4c
+
+

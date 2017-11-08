@@ -33,7 +33,7 @@
 /* We squeeze this amount into 14 bit of data, so we must guarantee that
    DAY_TICKS * (max_day_length_factor+1) can fit in 14-bit
    See CmdScheduledDispatchSetStartDate */
-assert_compile(DAY_TICKS * 126 < 16384);
+assert_compile(ORIG_DAY_TICKS * 126 < 16384);
 
 /**
  * Enable or disable scheduled dispatch
