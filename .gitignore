@@ -51,3 +51,5 @@ src/os/windows/ottdres.rc
 .idea
 CMakeLists.txt
 cmake-build-debug/
+linux-x64-openttd-freeplay
+win-x64-openttd-freeplay
