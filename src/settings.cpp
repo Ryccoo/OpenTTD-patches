@@ -1434,6 +1434,13 @@ static bool DayLengthIsolatedChanged(int32 p1)
 	return true;
 }
 
+static bool IncomeFactorChanged(int32 p1)
+{
+	MarkWholeScreenDirty();
+	InvalidateDetailsWindow(p1);
+	return true;
+}
+
 #ifdef ENABLE_NETWORK
 
 static bool UpdateClientName(int32 p1)

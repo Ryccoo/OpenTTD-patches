@@ -1646,6 +1646,8 @@ STR_CONFIG_SETTING_DAY_LENGTH_FACTOR                            :Day length fact
 STR_CONFIG_SETTING_DAY_LENGTH_FACTOR_HELPTEXT                   :Game pace is slowed by this factor
 STR_CONFIG_SETTING_DAY_LENGTH_FACTOR_ISOLATED                   :{LTBLUE}Day length factor isolated: {ORANGE}{STRING}
 STR_CONFIG_SETTING_DAY_LENGTH_FACTOR_ISOLATED_HELPTEXT          :Only day counting is slowed by this factor. It requires more ticks to switch to next day but everything else should be unaffected. Mind the should. Yey if you are reading this you are playing this awesome custom version of Suite Analytics team.
+STR_CONFIG_SETTING_INCOME_FACTOR                                :{LTBLUE}Income factor (%) {ORANGE}{STRING2}
+STR_CONFIG_SETTING_INCOME_FACTOR_HELPTEXT                       :Factor applied on all delivered cargo. Set in % between 1 and 200. 100% is neutral.
 STR_CONFIG_SETTING_DRAG_SIGNALS_DENSITY                         :When dragging, place signals every: {STRING2}
 STR_CONFIG_SETTING_DRAG_SIGNALS_DENSITY_HELPTEXT                :Set the distance at which signals will be built on a track up to the next obstacle (signal, junction), if signals are dragged
 STR_CONFIG_SETTING_DRAG_SIGNALS_DENSITY_VALUE                   :{COMMA} tile{P 0 "" s}

@@ -1667,6 +1667,7 @@ static SettingsContainer &GetSettingsTree()
 			accounting->Add(new SettingEntry("economy.inflation"));
 			accounting->Add(new SettingEntry("economy.day_length_factor"));
 			accounting->Add(new SettingEntry("economy.day_length_factor_isolated"));
+			accounting->Add(new SettingEntry("economy.income_factor"));
 			accounting->Add(new SettingEntry("difficulty.initial_interest"));
 			accounting->Add(new SettingEntry("difficulty.max_loan"));
 			accounting->Add(new SettingEntry("difficulty.subsidy_multiplier"));

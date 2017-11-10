@@ -792,6 +792,10 @@ bool AfterLoadGame()
 		_settings_game.economy.day_length_factor_isolated = 1;
 	}
 
+	if (SlXvIsFeatureMissing(XSLFI_INCOME_FACTOR)) {
+		_settings_game.economy.income_factor = 100;
+	}
+
 	/* Update current year
 	 * must be done before loading sprites as some newgrfs check it */
 	SetDate(_date, _date_fract);
@@ -3416,6 +3420,10 @@ bool AfterLoadGame()
 	/* Set day length factor to 1 if loading a pre day length savegame */
 	if (SlXvIsFeatureMissing(XSLFI_VARIABLE_DAY_LENGTH) && SlXvIsFeatureMissing(XSLFI_SPRINGPP)) {
 		_settings_game.economy.day_length_factor_isolated = 1;
+	}
+
+	if (SlXvIsFeatureMissing(XSLFI_INCOME_FACTOR)) {
+		_settings_game.economy.income_factor = 100;
 	}
 
 	if (SlXvIsFeatureMissing(XSLFI_SAFER_CROSSINGS)) {

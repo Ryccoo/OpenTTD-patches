@@ -37,6 +37,7 @@ enum SlXvFeatureIndex {
 	XSLFI_ENH_VIEWPORT_PLANS,                     ///< Enhanced viewport patch: plans
 	XSLFI_INFRA_SHARING,                          ///< Infrastructure sharing patch
 	XSLFI_VARIABLE_DAY_LENGTH,                    ///< Variable day length patch
+	XSLFI_INCOME_FACTOR,                          ///< Income factor patch
 	XSLFI_ORDER_OCCUPANCY,                        ///< Running average of order occupancy
 	XSLFI_MORE_COND_ORDERS,                       ///< More conditional orders patch
 	XSLFI_EXTRA_LARGE_MAP,                        ///< Extra large map

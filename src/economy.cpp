@@ -1044,8 +1044,9 @@ Money GetTransportedGoodsIncome(uint num_pieces, uint dist, byte transit_days, C
 	 *
 	 */
 	const int time_factor = max(MAX_TIME_FACTOR - days_over_days1 - days_over_days2, MIN_TIME_FACTOR);
+	float income_factor = _settings_game.economy.income_factor / 100.0f;
 
-	return BigMulS(dist * time_factor * num_pieces, cs->current_payment, 21);
+	return BigMulS((int) (dist * time_factor * num_pieces * income_factor), cs->current_payment, 21);
 }
 
 /** The industries we've currently brought cargo to. */
