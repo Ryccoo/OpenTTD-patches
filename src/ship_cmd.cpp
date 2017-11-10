@@ -220,6 +220,8 @@ Money Ship::GetRunningCost() const
 {
 	const Engine *e = this->GetEngine();
 	uint cost_factor = GetVehicleProperty(this, PROP_SHIP_RUNNING_COST_FACTOR, e->u.ship.running_cost);
+	cost_factor *= _settings_game.economy.day_length_factor_isolated;
+	cost_factor *= _settings_game.economy.day_length_factor;
 	return GetPrice(PR_RUNNING_SHIP, cost_factor, e->GetGRF());
 }
 

@@ -1645,6 +1645,8 @@ Money RoadVehicle::GetRunningCost() const
 	uint cost_factor = GetVehicleProperty(this, PROP_ROADVEH_RUNNING_COST_FACTOR, e->u.road.running_cost);
 	if (cost_factor == 0) return 0;
 
+	cost_factor *= _settings_game.economy.day_length_factor_isolated;
+	cost_factor *= _settings_game.economy.day_length_factor;
 	return GetPrice(e->u.road.running_cost_class, cost_factor, e->GetGRF());
 }
 

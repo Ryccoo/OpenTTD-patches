@@ -4605,6 +4605,8 @@ Money Train::GetRunningCost() const
 		/* Halve running cost for multiheaded parts */
 		if (v->IsMultiheaded()) cost_factor /= 2;
 
+		cost_factor *= _settings_game.economy.day_length_factor_isolated;
+		cost_factor *= _settings_game.economy.day_length_factor;
 		cost += GetPrice(e->u.rail.running_cost_class, cost_factor, e->GetGRF());
 	} while ((v = v->GetNextVehicle()) != NULL);
 

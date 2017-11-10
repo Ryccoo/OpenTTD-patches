@@ -1422,6 +1422,7 @@ static bool DayLengthChanged(int32 p1)
 {
 	SetScaledTickVariables();
 	MarkWholeScreenDirty();
+	InvalidateDetailsWindow(p1);
 	return true;
 }
 
@@ -1429,6 +1430,7 @@ static bool DayLengthIsolatedChanged(int32 p1)
 {
 	SetScaledTickVariables();
 	MarkWholeScreenDirty();
+	InvalidateDetailsWindow(p1);
 	return true;
 }
 
