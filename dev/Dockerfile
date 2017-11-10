@@ -1,6 +1,7 @@
 FROM debian:latest
 
 ARG OPENGFX_VERSION="0.5.2"
+ARG FREEPLAY_VERSION="0.22.2"
 
 # Get things ready
 RUN mkdir -p /config \
@@ -26,12 +27,12 @@ RUN mkdir -p /openttd
 
 # Build OpenTTD itself
 WORKDIR /openttd
-RUN wget https://github.com/Ryccoo/OpenTTD-patches/archive/freeplay-0.22.1.tar.gz -O freeplay.tar.gz
+RUN wget https://github.com/Ryccoo/OpenTTD-patches/archive/freeplay-$FREEPLAY_VERSION.tar.gz -O freeplay.tar.gz
 RUN tar xfz freeplay.tar.gz
-WORKDIR /openttd/OpenTTD-patches-freeplay-0.22.1/
+WORKDIR /openttd/OpenTTD-patches-freeplay-$FREEPLAY_VERSION/
 
 RUN mkdir -p ///usr/local/share/games/openttd/data
-RUN /openttd/OpenTTD-patches-freeplay-0.22.1/configure \
+RUN /openttd/OpenTTD-patches-freeplay-$FREEPLAY_VERSION/configure \
     --enable-dedicated \
     --binary-dir=bin \
     --personal-dir=/ \
